@@ -19,10 +19,8 @@ fn main() {
                     .collect();
             entries.expect("Failed to read entries")
         })
-        .fold(Vec::new(), |mut acc, mut x| {
-            acc.append(&mut x);
-            acc
-        });
+        .collect::<Vec<Vec<PathBuf>>>()
+        .concat();
     let pb = ProgressBar::new(entries.len() as u64);
     pb.set_style(
         ProgressStyle::default_bar()
