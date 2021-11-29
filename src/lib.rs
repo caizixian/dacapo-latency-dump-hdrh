@@ -32,6 +32,7 @@ impl DaCapoLatencyDump {
         V2DeflateSerializer::new()
             .serialize(
                 &self.hist,
+                // https://github.com/HdrHistogram/HdrHistogram_py/issues/29
                 &mut EncoderWriter::new(&mut File::create(path).unwrap(), base64::STANDARD),
             )
             .expect("Failed to save histogram as hdrh");
